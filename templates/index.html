@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt">
+   <head>
+      <meta charset="UTF-8">
+      <title>Lista de Produtos</title>
+      <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+   </head>
+   <body>
+      <h1>Produtos</h1>
+      <a href="/add">Adicionar Produto</a>
+      <table>
+         <thead>
+            <tr>
+               <th>Nome</th>
+               <th>Descrição</th>
+               <th>Preço</th>
+               <th>Ações</th>
+            </tr>
+         </thead>
+         <tbody>
+            {% for product in products %}
+            <tr>
+               <td>{{ product.name }}</td>
+               <td>{{ product.description }}</td>
+               <td>{{ product.price }}</td>
+               <td>
+                  <a href="/update/{{ product.id }}" style="margin-right: 10px;" class="inline-link">Atualizar</a>
+                  <form action="/delete/{{ product.id }}" method="post" class="inline-link">
+                     <button type="submit">Deletar</button>
+                  </form>
+               </td>
+            </tr>
+            {% endfor %}
+         </tbody>
+      </table>
+   </body>
+</html>
+
